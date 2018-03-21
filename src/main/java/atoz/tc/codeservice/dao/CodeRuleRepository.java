@@ -24,10 +24,10 @@ public class CodeRuleRepository {
 		return result;
 	}
 
-	public void addRuleBatch(List<CodeRule> ruleList) {
+	public String addRuleBatch(List<CodeRule> ruleList) {
 		String sql = "INSERT INTO CODE_RULE VALUES (?,?,?,?,?,?)";
 		Date now = new Date(System.currentTimeMillis());
-		this.jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+		int[] result = this.jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
 			@Override
 			public void setValues(PreparedStatement ps, int i) throws SQLException {
 				ps.setString(1, ruleList.get(i).getPartTypeId());
@@ -42,6 +42,21 @@ public class CodeRuleRepository {
 				return ruleList.size();
 			}
 		});
+		for(int i=0;i<result.length;i++) {
+			if(result[i]<=0) return "FAILURE";
+		}
+		return "SUCCESS";
 
+	}
+	
+	public String delByPartTypeId(String partTypeId) {
+		if(partTypeId==null||partTypeId=="") return "FAILURE";
+		String sql ="delete from CODE_RULE where PART_TYPE_ID = ?";
+		int i = this.jdbcTemplate.update(sql,partTypeId);
+		if(i>=1) {
+			return "SUCCESS";
+		}else {
+			return "FAILURE";
+		}
 	}
 }
