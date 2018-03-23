@@ -18,9 +18,9 @@ public class CodeRuleRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	public List<CodeRule> getRule(String partTypeId) {
-		String sql = "select t.part_type_id, t.code_field, t.code_type, t.code_sort from CODE_RULE t where t.part_type_id = ?";
+		String sql = "select t.part_type_id, t.code_field, t.code_type, t.code_sort ,t.flow_length,t.if_pk from CODE_RULE t where t.part_type_id = ?";
 		List<CodeRule> result = this.jdbcTemplate.query(sql, (rs, rowNum) -> new CodeRule(rs.getString("part_type_id"),
-				rs.getString("code_field"), rs.getString("code_type"), rs.getInt("code_sort")),partTypeId);
+				rs.getString("code_field"), rs.getString("code_type"), rs.getInt("code_sort"),rs.getInt("flow_length"),rs.getString("if_pk")),partTypeId);
 		return result;
 	}
 

@@ -3,6 +3,9 @@ package atoz.tc.codeservice.model;
 public class CodeRecord {
 	private String recordPk;
 	private String nextNumber;
+	public CodeRecord() {
+		super();
+	}
 	public CodeRecord(String recordPk, String nextNumber) {
 		super();
 		this.recordPk = recordPk;

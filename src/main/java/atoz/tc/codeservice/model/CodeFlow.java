@@ -8,9 +8,8 @@ public class CodeFlow {
 	private String codeFieldValue;
 	private int minNumber;
 	private int maxNumber;
-	private int flowLength;
 	public CodeFlow(String partTypeId, String flowField, String codeField, String codeFieldValue, int minNumber,
-			int maxNumber, int flowLength) {
+			int maxNumber) {
 		super();
 		this.partTypeId = partTypeId;
 		this.flowField = flowField;
@@ -18,7 +17,6 @@ public class CodeFlow {
 		this.codeFieldValue = codeFieldValue;
 		this.minNumber = minNumber;
 		this.maxNumber = maxNumber;
-		this.flowLength = flowLength;
 	}
 	public String getPartTypeId() {
 		return partTypeId;
@@ -55,11 +53,5 @@ public class CodeFlow {
 	}
 	public void setMaxNumber(int maxNumber) {
 		this.maxNumber = maxNumber;
-	}
-	public int getFlowLength() {
-		return flowLength;
-	}
-	public void setFlowLength(int flowLength) {
-		this.flowLength = flowLength;
 	}
 }

@@ -5,13 +5,17 @@ public class CodeRule {
 	private String codeField;
 	private String codeType;
 	private int codeSort;
+	private int flowLength;
+	private String ifPk;
 	
-	public CodeRule(String partTypeId, String codeField, String codeType, int codeSort) {
+	public CodeRule(String partTypeId, String codeField, String codeType, int codeSort, int flowLength, String ifPk) {
 		super();
 		this.partTypeId = partTypeId;
 		this.codeField = codeField;
 		this.codeType = codeType;
 		this.codeSort = codeSort;
+		this.flowLength = flowLength;
+		this.ifPk = ifPk;
 	}
 	public String getPartTypeId() {
 		return partTypeId;
@@ -36,6 +40,18 @@ public class CodeRule {
 	}
 	public void setCodeSort(int codeSort) {
 		this.codeSort = codeSort;
+	}
+	public int getFlowLength() {
+		return flowLength;
+	}
+	public void setFlowLength(int flowLength) {
+		this.flowLength = flowLength;
+	}
+	public String getIfPk() {
+		return ifPk;
+	}
+	public void setIfPk(String ifPk) {
+		this.ifPk = ifPk;
 	}
 	
 }
