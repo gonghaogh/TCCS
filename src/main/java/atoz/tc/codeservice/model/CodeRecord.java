@@ -2,11 +2,11 @@ package atoz.tc.codeservice.model;
 
 public class CodeRecord {
 	private String recordPk;
-	private String nextNumber;
+	private int nextNumber;
 	public CodeRecord() {
 		super();
 	}
-	public CodeRecord(String recordPk, String nextNumber) {
+	public CodeRecord(String recordPk, int nextNumber) {
 		super();
 		this.recordPk = recordPk;
 		this.nextNumber = nextNumber;
@@ -17,10 +17,10 @@ public class CodeRecord {
 	public void setRecordPk(String recordPk) {
 		this.recordPk = recordPk;
 	}
-	public String getNextNumber() {
+	public int getNextNumber() {
 		return nextNumber;
 	}
-	public void setNextNumber(String nextNumber) {
+	public void setNextNumber(int nextNumber) {
 		this.nextNumber = nextNumber;
 	}
 	

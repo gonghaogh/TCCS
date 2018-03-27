@@ -33,34 +33,22 @@ public class CodeRecordService {
 		if(codeRecord==null||"".equals(codeRecord.getRecordPk())){
 			if(hasFlow){
 				currentNumber = getFirstNumber(map,codeRuleList,partTypeId);
+				code = getCode(map,codeRuleList,currentNumber);
 				codeRecord = new CodeRecord();
 				codeRecord.setRecordPk(codeKey);
-				Object[] ob = getUniqueCode(map,codeRuleList,currentNumber);
-				code = (String)ob[0];
-				int nextNo = (int)ob[1];
-				codeRecord.setNextNo(nextNo+1);
-				CodeRecordDBManager.insert(codeRecord);
+				codeRecord.setNextNumber(currentNumber+1);
+				this.codeRecordRepository.insert(codeRecord);
 			}else{
 				code = getCode(map,codeRuleList,-1);
-				int historyTotal = PitemDBManager.queryByCode(code);
-				if(historyTotal>0){
-					code = "code_exist";
-				}
 			}
 		}else{
 			if(hasFlow){
-				currentNumber = codeRecord.getNextNo();
-				Object[] ob = getUniqueCode(map,codeRuleList,currentNumber);
-				code = (String)ob[0];
-				int nextNo = (int)ob[1];
-				codeRecord.setNextNo(nextNo+1);
-				CodeRecordDBManager.update(codeRecord);
+				currentNumber = codeRecord.getNextNumber();
+				code = getCode(map,codeRuleList,currentNumber);
+				codeRecord.setNextNumber(currentNumber+1);
+				this.codeRecordRepository.update(codeRecord);
 			}else{
 				code = getCode(map,codeRuleList,-1);
-				int historyTotal = PitemDBManager.queryByCode(code);
-				if(historyTotal>0){
-					code = "code_exist";
-				}
 			}
 		}
 		return code;

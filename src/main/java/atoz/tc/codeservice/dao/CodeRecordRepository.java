@@ -15,7 +15,7 @@ public class CodeRecordRepository {
 	public CodeRecord queryByPk(String recordPK) {
 		String sql = "select * from CODE_RECORD where RECORD_PK = ?";
 		List<CodeRecord> resultList = this.jdbcTemplate.query(sql, (rs, rowNum) -> new CodeRecord(rs.getString("RECORD_PK"),
-				rs.getString("NEXT_NUMBER")),recordPK);
+				rs.getInt("NEXT_NUMBER")),recordPK);
 		if(resultList.size()!=1) return null;
 		return resultList.get(0);
 	}
