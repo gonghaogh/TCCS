@@ -1,7 +1,6 @@
 package atoz.tc.codeservice.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +14,12 @@ import atoz.tc.codeservice.service.CodeRuleService;
 public class CodeRuleController {
 	@Autowired
 	private CodeRuleService codeRuleService;
-	@RequestMapping
-    public String index(){
-        return "Hello World!";
+	@RequestMapping(value="/addRule")
+    public String addRule(String ruleJson){
+        return codeRuleService.addRule(ruleJson);
     }
 	@RequestMapping(value="/getRule")
-	public Map<String,List<CodeRule>> getRule(String partTypeId){
+	public List<CodeRule> getRule(String partTypeId){
 		return codeRuleService.getRule(partTypeId);
 	}
 }
